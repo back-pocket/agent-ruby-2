@@ -1,96 +1,334 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+<html><head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>agent-ruby-html5</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- write your code here -->
+<script src="libs/1.0.0/createjs.min.js"></script>
+<script src="agent-ruby-html5.js"></script>
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-* {box-sizing:border-box;}
-
-.container {
-  position: relative;
-  width: 1000px;
-  max-width: 1000px;
-  margin: 0 auto; 
-}
-
-.image {
-  display: grid;
-  margin-left: 1;
-  margin-right: 1;
-  max-width: 100%;
-  height: 1;
-  display:grid;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
-}
-
-.overlay {
-  position: absolute; 
-  bottom: 0; 
-  color: #f1f1f1; 
-  width: 1;
-  transition: linear; 
-  opacity:0;
- 
-}
- .text1 { 
-  left: 0; 
-  margin-top: -50px;
-  width: 100%;
-  top: 70%;
-  position: fixed;
-  color:rgba(243, 243, 243, 0.654);
-  font-size: 12px; 
-  text-align: left;
-
-
- }
- .text2 { 
-  left: 1500px; 
-  margin-top: -50px;
-  width: 100%;
-  top: 70%;
-  position: fixed;
-  color:rgba(243, 243, 243, 0.654);
-  font-size: 12px; 
-  text-align: left;
-
-
- }
-
-.container:hover .overlay {
-  opacity: 1;
-  
-  
-}
-
-
-</style>
+<!-- write your code here -->
 </head>
-<body>
+<body style="margin:0px;">
+    <div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00);">
+        <div id="entry-container">
+            <span id="edream-portal-text">AGENT RUBY'S EDREAM PORTAL</span>
+            <span id="enter-text">ENTER</span>
+            <img id="entry-img" src="/images/entry.png">
+        </div>
+ 
+        <!-- Seeker text reflected -->
+        <div id="seeker-reflected-container">
+            <span id="seeker-reflected-text">CONNECT</span>
+        </div>
 
-<div class="text1"> 
-    <p> 1. Robert Smith. </p>   
-    <p>Robert was the Prophet’s third-great-grandfather. He left England  </p>
-    <p>when he was a teenager to move to America. He arrived in Boston in 1638.</p>
-</div>
+        <!-- Info modal -->
+        <div id="info-modal">
+            <p><span class="text-label">Instructions:</span><br>To interact with Ruby, click your mouse in the "Seeker" box and start typing.</p>
+            <p>You can ask Ruby about all sorts of topics, life, love, movies, and her new movie, Technolust using everyday language.</p>
+            <p>Try to keep your sentences short.</p>
+            <p>Hit return when you are done, and Ruby will answer.</p>
+            <p>If Ruby gets confused, feel free to tell her. Agent Ruby's intelligence increases over time as more people interact with her. Check back later to see what she figures out, and to experience new features like speech that are being added.</p>
+            <p>
+                <span class="text-label">Credits:</span><br>
+                <span>Agent Ruby</span><br>
+                <span class="text-indent">by Lynn Hershman</span>
+            </p>
+            <p>
+                <span class="text-label">In Collaboration with:</span><br>
+                <span>Róbert Viõar Bjarnason, Lior Saar, Michael Warnock, Sean Edin, Sandra D. Zimmermann, Robert Wald, Joel Klein and InOrbit Entertainment, Inc</span>
+            </p>
+            <p>
+                <span class="text-label">Additional Programming:</span><br>
+                <span>Gever Tulley, Helium, Momerath</span>
+            </p>
+            <p>
+                <span class="text-label">Additional Graphics:</span><br>
+                <span>Tri Pham</span>
+            </p>
+            <p>
+                <span class="text-label">Assistant Producer:</span><br>
+                <span>Kyle Stephan</span>
+            </p>
+            <p>
+                <span class="text-label">Executive Producer:</span><br>
+                <span>Robert Wald</span>
+            </p>
+            <p>
+                <span class="text-label">Funded in Part by:</span><br>
+                <span>The Daniel Langlois Foundation</span><br>
+                <span>San Francisco Museum of Modern Art</span><br>
+                <span>California Arts Council</span>
+            </p>
+            <p>
+                <span class="text-label">Special Thanks to:</span><br>
+                <span>Benjamin Weil</span><br>
+                <span>Jean Gagnon</span><br>
+                <span>Steve Deitz</span>
+            </p>
+            <p>
+                <span class="text-label">Contact: </span><a class="orange-link" href="mailto:hotwirelh@aol.com">hotwirelh@aol.com</a>
+            </p>
+            <p>
+                Please report any problems, feedback, or suggestions to <a class="orange-link" href="mailto:support@agentruby.com">support@agentruby.com</a>
+            </p>
+            <p>copyright by lynn hershman 2002</p>
+            <img id="dlf-img" src="/images/L_FDL_fn_4c_web.jpg">
+        </div>
+ 
+        <!-- Ruby text -->
+        <textarea id="rb-textarea" name="rb-paragraph-text"></textarea>
 
-<div class="text2">
-    <p>"it's easier for me</p>
-        <p>To get closer to heaven than ever feel whole again</p>
-        <p> I never said I would stay to the end
-            <p>I'd leave you with babies and hoping for secrecy</p>
-            <p>Screaming like this in the</p>
-            <p> hole of sincerity"</p>
-</div>
-<div class="container">
-  <img src="josephsmith.png" class="image" class="center">
-  <div class="overlay"><img src="robertsmith.png" class="image" > 
-   </div>
-</div>
+        <!-- Put Ruby on your Palm -->
+        <div id="rb-palm-link-container">
+            <a id="rb-palm-link" href="https://limefroz.com/rl/palm.html" target="_blank">[ Put Ruby on your Palm ]</a>
+        </div>
+
+        <!-- More info -->
+        <div id="info-link-container">
+            <span id="info-link">[ Info ]</span>
+        </div>
+ 
+        <!-- Seeker text -->
+        <textarea id="seeker-textarea" name="seeker-paragraph-text" maxlength="100"></textarea>
+        <canvas id="canvas" width="800" height="450" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:800px; height:450px; position: absolute; left: 0px; top: 0px; display: block;">
+        </div>
+    </div>
+
+
+    <script>
+        var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+
+        let entryElem = document.getElementById('entry-container');
+
+        let entryLinkElem = document.getElementById('enter-text');
+        
+        entryLinkElem.addEventListener('click', () => {
+            entryElem.style.display = 'none';
+            init();
+        });
+
+        function init() {
+            canvas = document.getElementById("canvas");
+            anim_container = document.getElementById("animation_container");
+            dom_overlay_container = document.getElementById("dom_overlay_container");
+            var comp=AdobeAn.getComposition("694F5D9EBC9E4C4EBF1247A4C69F9403");
+            var lib=comp.getLibrary();
+            var loader = new createjs.LoadQueue(false);
+            loader.installPlugin(createjs.Sound);
+            loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+            loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+            var lib=comp.getLibrary();
+            loader.loadManifest(lib.properties.manifest);
+        }
+        function handleFileLoad(evt, comp) {
+            var images=comp.getImages();
+            if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+        }
+        function handleComplete(evt,comp) {
+            //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+            var lib=comp.getLibrary();
+            var ss=comp.getSpriteSheet();
+            var queue = evt.target;
+            var ssMetadata = lib.ssMetadata;
+            for(i=0; i<ssMetadata.length; i++) {
+                ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+            }
+            exportRoot = new lib.agentrubyport();
+            stage = new lib.Stage(canvas);
+            stage.enableMouseOver();
+            //Registers the "tick" event listener.
+            fnStartAnimation = function() {
+                stage.addChild(exportRoot);
+                createjs.Ticker.framerate = lib.properties.fps;
+                createjs.Ticker.addEventListener("tick", stage);
+            }
+            //Code to support hidpi screens and responsive scaling.
+            AdobeAn.makeResponsive(true,'both',true,1,[canvas,anim_container,dom_overlay_container]);
+            AdobeAn.compositionLoaded(lib.properties.id);
+            fnStartAnimation();
+        }
+        function playSound(id, loop, offset) {
+            return createjs.Sound.play(id, {'interrupt':createjs.Sound.INTERRUPT_EARLY, 'loop': loop, 'offset': offset});}
+    </script>
+
+
+    <script>
+    // Global Scripts
+        const rbPalmLinkContainerElem = document.getElementById('rb-palm-link-container');
+        const infoLinkContainerElem = document.getElementById('info-link-container');
+        const infoModalElem = document.getElementById('info-modal');
+        const infoLinkElem = document.getElementById('info-link');
+        const rbTextElem = document.getElementById('rb-textarea');
+        const seekerTextElem = document.getElementById('seeker-textarea');
+        const seekerReflectedElem = document.getElementById('seeker-reflected-container');
+        const seekerReflectedTextElem = document.getElementById('seeker-reflected-text');
+        var rbExpression = 'neutral';
+        var animationComplete = false;
+        // ----------------------------------------------
+        function handleAnimationComplete() {
+            animationComplete = true;
+            // preloadElem is added after script starts running
+            // so we wait until animation complete to remove it
+            let preloadElem = document.getElementById('preloadjs-container');
+            preloadElem.remove();
+            rbTextElem.style.display = 'block';
+            seekerTextElem.style.display = 'block';
+            seekerReflectedElem.style.display = 'block';
+            rbPalmLinkContainerElem.style.display = 'flex';
+            infoLinkContainerElem.style.display = 'flex';
+
+            infoLinkElem.addEventListener("click", function() {
+                if (infoModalElem.classList.contains('visible')) {
+                    infoModalElem.classList.remove('visible');
+                    infoLinkElem.innerHTML = "[ Info ]";
+                } else {
+                    infoModalElem.classList.add('visible');
+                    infoLinkElem.innerHTML = "[ Close Info ]";
+                }
+            });
+
+            infoModalElem.addEventListener("wheel", e => {
+                e.preventDefault();
+            }, { passive:false });
+
+            // https://stackoverflow.com/questions/37379694/javascript-how-to-stop-pinch-zoom-multi-touch-input-attacks
+            window.addEventListener("touchmove", function(e){
+                e.preventDefault();
+            },{passive: false});
+            connectToRb();
+        }
+        // ----------------------------------------------
+        function connectToRb() {
+            axios.get('/connectToAIMLServer')
+                .then(data => {
+                    displayRbMsg(parseRbMsg(data));
+                    listenForMessages();
+                })
+                .catch (err => {
+                // TODO: Handle the case where connection fails?
+                console.log(err);
+            });
+        }
+        // ----------------------------------------------
+        function listenForMessages() {
+            seekerTextElem.addEventListener("keypress", e => {
+                if (e.key === 'Enter' || e.key == 10) {
+                    // TODO: Read from seeker textarea and send that
+                    e.preventDefault();
+                    sendMsgToRb(seekerTextElem.value);
+                }
+            });
+            rbTextElem.addEventListener("keypress", e => {
+                if (e.key === 'Enter' || e.key == 10) {
+                    // TODO: Read from seeker textarea and send that
+                    e.preventDefault();
+                    seekerTextElem.focus();
+                    sendMsgToRb(seekerTextElem.value);
+                }
+            });
+        }
+        // ----------------------------------------------
+        function updateReflectedText(msg) {
+            if (msg.length === 0 || msg === '') {
+                seekerReflectedTextElem.innerHTML = 'INACTIVITY'
+            } else {
+                seekerReflectedTextElem.innerHTML = msg;
+            }
+        }
+        // ----------------------------------------------
+        function sendMsgToRb(msgToRb) {
+            axios.post('/seekerSendMsg', {
+                msg: msgToRb,
+            }).then(data => {
+                // message received from rb
+                updateReflectedText(msgToRb);
+                displayRbMsg(parseRbMsg(data));
+                seekerTextElem.value = '';
+            }).catch (err => {
+                // TODO: Handle the case where sending message fails?
+                console.log(err);
+            });
+        }
+        // ----------------------------------------------
+        function parseRbMsg(rbMsg) {
+            // console.log('[ parseRbMsg ] data: ', rbMsg);
+            // check for rb expression
+            if (rbMsg.data.indexOf('<script>') !== -1) {
+                let splitMsgArr = rbMsg.data.split('<script>');
+                // show expression
+                // TODO: remove surrounding quotes too...
+                setRbExpression(splitMsgArr[1].split('=').pop().split(';')[0]);
+                // display parsed message
+                return splitMsgArr[0];
+            }
+            return rbMsg.data;
+        }
+        // ----------------------------------------------
+        function displayRbMsg(parsedRbMsg) {
+            rbTextElem.value = parsedRbMsg;
+        }
+        // ----------------------------------------------
+        function setRbExpression(expression) {
+            // console.log('[setRbExpression] expression: ', expression);
+            switch (expression) {
+                case '"happy"':
+                    exportRoot.expression_smiling_anim.alpha = 100;
+                    exportRoot.expression_stern_anim.alpha = 0;
+                    exportRoot.expression_angry_anim.alpha = 0;
+                    exportRoot.expression_sad_anim.alpha = 0;
+                    exportRoot.expression_slight_smile_anim.alpha = 0;
+                    exportRoot.expression_neutral_anim.alpha = 0;
+                    break;
+                case '"angry"':
+                    exportRoot.expression_smiling_anim.alpha = 0;
+                    exportRoot.expression_stern_anim.alpha = 0;
+                    exportRoot.expression_angry_anim.alpha = 100;
+                    exportRoot.expression_sad_anim.alpha = 0;
+                    exportRoot.expression_slight_smile_anim.alpha = 0;
+                    exportRoot.expression_neutral_anim.alpha = 0;
+                    break;
+                case '"sad"':
+                    exportRoot.expression_smiling_anim.alpha = 0;
+                    exportRoot.expression_stern_anim.alpha = 0;
+                    exportRoot.expression_angry_anim.alpha = 0;
+                    exportRoot.expression_sad_anim.alpha = 100;
+                    exportRoot.expression_slight_smile_anim.alpha = 0;
+                    exportRoot.expression_neutral_anim.alpha = 0;
+                    break;
+                // CURRENTLY NOT USED
+                case '"stern"':
+                    exportRoot.expression_smiling_anim.alpha = 0;
+                    exportRoot.expression_stern_anim.alpha = 100;
+                    exportRoot.expression_angry_anim.alpha = 0;
+                    exportRoot.expression_sad_anim.alpha = 0;
+                    exportRoot.expression_slight_smile_anim.alpha = 0;
+                    exportRoot.expression_neutral_anim.alpha = 0;
+                    break;
+                // CURRENTLY NOT USED
+                case '"slight-smile"':
+                    exportRoot.expression_smiling_anim.alpha = 0;
+                    exportRoot.expression_stern_anim.alpha = 0;
+                    exportRoot.expression_angry_anim.alpha = 0;
+                    exportRoot.expression_sad_anim.alpha = 0;
+                    exportRoot.expression_slight_smile_anim.alpha = 100;
+                    exportRoot.expression_neutral_anim.alpha = 0;
+                    break;
+                default:
+                    // neutral expression
+                    exportRoot.expression_smiling_anim.alpha = 0;
+                    exportRoot.expression_stern_anim.alpha = 0;
+                    exportRoot.expression_angry_anim.alpha = 0;
+                    exportRoot.expression_sad_anim.alpha = 0;
+                    exportRoot.expression_slight_smile_anim.alpha = 0;
+                    exportRoot.expression_neutral_anim.alpha = 100;
+            }
+        }
+    </script>
 
 
 
-</body>
-</html>
+</body></html>
